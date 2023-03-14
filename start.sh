@@ -1,1 +1,2 @@
-go run cmd/main.go
+# run application in container
+docker-compose up -d

@@ -1,0 +1,29 @@
+version: "3.8"
+services:
+  app:
+    container_name: article_app_container
+    build: .
+    env_file:
+      - .env
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql-db
+    networks:
+      - article-app-network
+  mysql-db:
+    container_name: mysql_article_container
+    image: mysql:latest
+    ports:
+      - "3306:3306"
+    command: --init-file /docker-entrypoint-initdb.d/init.sql
+    volumes:
+      - ./init-db:/docker-entrypoint-initdb.d
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
+    networks:
+      - article-app-network
+
+networks:
+  article-app-network:
+    driver: bridge
