@@ -89,15 +89,6 @@ func (r *Response) NotFound(w http.ResponseWriter, msg string, data ...interface
 	SendResponse(w, &b, data)
 }
 
-// NotAllowed handles 405 error response
-func (r *Response) NotAllowed(w http.ResponseWriter, msg string, data ...interface{}) {
-	b := Body{}
-	b.SetStatus(http.StatusMethodNotAllowed)
-	b.SetMessage(msg)
-
-	SendResponse(w, &b, data)
-}
-
 // SendResponse
 func SendResponse(w http.ResponseWriter, b *Body, data interface{}) {
 	b.SetData(data)

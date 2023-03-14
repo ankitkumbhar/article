@@ -23,7 +23,7 @@ func InitRoutes(app *handler.Application) *chi.Mux {
 
 	// handling 405 method not allowed error
 	r.MethodNotAllowed(func(w http.ResponseWriter, r *http.Request) {
-		response.New().NotAllowed(w, http.StatusText(http.StatusMethodNotAllowed))
+		response.New().NotFound(w, http.StatusText(http.StatusMethodNotAllowed))
 	})
 
 	// route to handle article request

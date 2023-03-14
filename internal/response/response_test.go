@@ -77,17 +77,6 @@ func Test_Created(t *testing.T) {
 			},
 			wantRespBody: response.Body{Status: http.StatusNotFound, Message: "error message - not found"},
 		},
-		{
-			name: "error method not allowed",
-			mockResp: func() *httptest.ResponseRecorder {
-				resp := response.New()
-				w := httptest.NewRecorder()
-				resp.NotAllowed(w, "error message - method not allowed")
-
-				return w
-			},
-			wantRespBody: response.Body{Status: http.StatusMethodNotAllowed, Message: "error message - method not allowed"},
-		},
 	}
 
 	for _, tt := range tests {
